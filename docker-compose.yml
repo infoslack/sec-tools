@@ -1,0 +1,13 @@
+db:
+  image: postgres:9.3
+  volumes:
+    - ~/.docker-volumes/msf/db/:/var/lib/postgresql/data/
+  ports:
+    - 5432
+
+msf:
+  build: .
+  ports:
+    - 4444:4444
+  links:
+    - db

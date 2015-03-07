@@ -25,8 +25,10 @@ RUN git clone --depth=1 https://github.com/rapid7/metasploit-framework.git \
         && cd metasploit-framework \
         && bundle install
 
+ADD setup.sh /
+RUN chmod +x /setup.sh
+
 WORKDIR /metasploit-framework
-
+ADD database.yml config/database.yml
 EXPOSE 4444
-
-CMD ["./msfconsole"]
+CMD ["/setup.sh"]
