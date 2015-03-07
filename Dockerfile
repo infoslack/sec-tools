@@ -1,4 +1,4 @@
-FROM infoslack/docker-ruby
+FROM infoslack/docker-ruby:2.1.5
 
 MAINTAINER Daniel Romero <infoslack@gmail.com>
 
