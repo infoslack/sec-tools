@@ -30,5 +30,6 @@ RUN chmod +x /setup.sh
 
 WORKDIR /metasploit-framework
 ADD database.yml config/database.yml
+
 EXPOSE 4444
 CMD ["/setup.sh"]
