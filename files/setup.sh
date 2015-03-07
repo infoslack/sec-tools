@@ -4,7 +4,7 @@ MSFUSER=${MSFUSER:-postgres}
 MSFPASS=${MSFPASS:-postgres}
 MSFDIR="/metasploit-framework"
 MSFCMD="${MSFDIR}/msfconsole"
-MSFCONF="${MSFDIR}/config/database.yml"
+MSFCON="${MSFDIR}/config/database.yml"
 
 USEREXIST="$( $CONNECT -tAc "SELECT 1 FROM pg_roles WHERE rolname='$MSFUSER'")"
 
@@ -18,4 +18,4 @@ if [[ ! $DBEXIST ]]; then
   $CONNECT -c "CREATE DATABASE msf OWNER $MSFUSER;"
 fi
 
-$MSFCMD -L -y $MSFCONF
+$MSFCMD -L -y $MSFCON 
