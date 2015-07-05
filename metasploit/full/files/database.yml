@@ -1,0 +1,9 @@
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: msf
+  pool: 15
+  timeout: 5
+  username: postgres
+  password: postgres
+  host: db
