@@ -1,0 +1,78 @@
+#!/bin/bash
+#
+# bash wrappers for docker run commands
+# Original:
+# https://github.com/jfrazelle/dotfiles/blob/master/.dockerfunc
+#
+# Helper Functions
+#
+del_stopped(){
+  local name=$1
+  local state=$(docker inspect --format "{{.State.Running}}" $name 2>/dev/null)
+
+  if [[ "$state" == "false" ]]; then
+    docker rm $name
+  fi
+}
+
+#
+# Container Aliases
+#
+wpscan(){
+  docker run --rm -it \
+    -v /tmp/wpscan/cache:/wpscan/cache \
+    --log-driver none \
+    --name wpscan \
+    infoslack/wpscan "$@"
+}
+
+arachni(){
+  docker run --rm -it \
+    -v $(pwd)/arachni_pentest:/pentest \
+    --log-driver none \
+    --name arachni \
+    infoslack/arachni "$@"
+}
+
+nmap(){
+  docker run --rm -it \
+    --name nmap \
+    infoslack/nmap "$@"
+}
+
+nikto(){
+  docker run --rm -it \
+    --name nikto \
+    infoslack/nikto "$@"
+}
+
+fierce(){
+  docker run --rm -it \
+    --name fierce \
+    infoslack/fierce "$@"
+}
+
+nessus(){
+  del_stopped nessus
+
+  docker run -d \
+    -p 8834:8834 \
+    --name nessus \
+    infoslack/nessus
+
+  echo "open https://127.0.0.1:8834"
+}
+
+metasploit(){
+  del_stopped metasploit
+
+  docker run -d \
+    --name postgres \
+    postgres:9.3
+  sleep 5
+
+  docker run -it \
+    --link postgres:db \
+    --name metasploit \
+    infoslack/metasploit
+}
