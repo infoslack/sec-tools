@@ -76,3 +76,15 @@ metasploit(){
     --name metasploit \
     infoslack/metasploit
 }
+
+wireshark(){
+  del_stopped wireshark
+
+  docker run -d \
+    --name wireshark \
+    --net=host --privileged \
+    -e DISPLAY=unix$DISPLAY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v ~/.docker-volumes/wireshark/pcap:/pcap \
+    wireshark
+}
