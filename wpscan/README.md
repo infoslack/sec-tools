@@ -5,7 +5,7 @@ Docker image for [wpscan](http://wpscan.org/)
 
 Usage with my image:
 
-		$ docker run --rm -it infoslack/dvwa --url www.example.com
+		$ docker run --rm -it infoslack/wpscan --url www.example.com
 
 If you want to generate the image:
 
