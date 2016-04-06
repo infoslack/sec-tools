@@ -1,13 +1,9 @@
-FROM debian:jessie
+FROM alpine
 
 MAINTAINER Daniel Romero <infoslack@gmail.com>
 
-RUN apt-get update && apt-get install -y \
-    perl \
-    build-essential && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install Net::DNS'
+RUN apk add --update perl perl-net-dns \
+      && rm -rf /var/cache/apk/*
 
 COPY fierce/ /fierce
 WORKDIR /fierce
