@@ -7,10 +7,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV NESSUS_VERSION 6.4.1
+ENV NESSUS_VERSION 6.6.0
 
 RUN wget -O /tmp/Nessus-${NESSUS_VERSION}-debian6_amd64.deb \
-    "http://downloads.nessus.org/nessus3dl.php?file=Nessus-6.4.1-debian6_amd64.deb&licence_accept=yes&t=34958f1d2820ccf2c5465e4d71ce92ff"
+    "https://downloads.nessus.org/nessus3dl.php?file=Nessus-${NESSUS_VERSION}-debian6_amd64.deb&licence_accept=yes&t=80353627d61a3b5eba37d24a49fde3c4"
 
 RUN dpkg -i /tmp/Nessus-${NESSUS_VERSION}-debian6_amd64.deb
 
